@@ -65,10 +65,17 @@ class MyHomePage extends StatelessWidget {
                     : Icons.phone_iphone,
                 text: '11 12345-6789',
                 onPressed: () {
+<<<<<<< Updated upstream
                   launchUrl(Uri(
                     scheme: 'tel',
                     path: '+55 11 12345-6789',
                   ));
+=======
+                  final url = Uri.parse(
+                    'whatsapp://send?phone=11123456789',
+                  );
+                  launchUrl(url);
+>>>>>>> Stashed changes
                 },
               ),
               SizedBox(height: 16),
