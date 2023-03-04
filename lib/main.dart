@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scjr1/widgets/rounded_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +35,7 @@ class MyHomePage extends StatelessWidget {
       backgroundColor: Colors.teal,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -55,40 +59,29 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 32),
-              Material(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                elevation: 8,
-                child: ListTile(
-                  leading: Icon(
-                    Icons.phone_android,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    '11 12345-6789',
-                    style: TextStyle(
-                      color: Colors.teal,
-                    ),
-                  ),
-                ),
+              RoundedButton(
+                icon: Platform.isAndroid
+                    ? Icons.phone_android
+                    : Icons.phone_iphone,
+                text: '11 12345-6789',
+                onPressed: () {
+                  launchUrl(Uri(
+                    scheme: 'tel',
+                    path: '+55 11 12345-6789',
+                  ));
+                },
               ),
               SizedBox(height: 16),
-              Material(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                elevation: 8,
-                child: ListTile(
-                  leading: Icon(
-                    Icons.email,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    'teste@gmail.com',
-                    style: TextStyle(
-                      color: Colors.teal,
-                    ),
-                  ),
-                ),
+              RoundedButton(
+                icon: Icons.email,
+                text: 'teste@gmail.com',
+                onPressed: () {
+                  launchUrl(Uri(
+                    scheme: 'mailto',
+                    path: 'teste@gmail.com',
+                    query: 'subject=Aula Teste&body=Body Test',
+                  ));
+                },
               ),
             ],
           ),
