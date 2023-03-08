@@ -16,7 +16,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MenuScreen(),
+      initialRoute: MenuScreen.id,
+      routes: {
+        MenuScreen.id: (context) => const MenuScreen(),
+        PersonalCardScreen.id: (context) {
+          final arguments = ModalRoute.of(context)?.settings.arguments
+              as PersonalCardScreenArguments;
+          return PersonalCardScreen(arguments: arguments);
+        },
+      },
     );
   }
 }

@@ -22,19 +22,22 @@ class RoundedButton extends StatelessWidget {
       color: backgroundColor,
       borderRadius: BorderRadius.circular(16),
       elevation: 8,
-      child: ListTile(
+      child: InkWell(
         onTap: onPressed,
-        leading: icon != null
-            ? Icon(
-                icon,
-                color: Colors.teal,
-              )
-            : null,
-        title: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: textColor,
+        borderRadius: BorderRadius.circular(16),
+        child: ListTile(
+          leading: icon != null
+              ? Icon(
+                  icon,
+                  color: Colors.teal,
+                )
+              : null,
+          title: Text(
+            text,
+            textAlign: icon == null ? TextAlign.center : TextAlign.start,
+            style: TextStyle(
+              color: textColor,
+            ),
           ),
         ),
       ),

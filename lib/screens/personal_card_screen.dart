@@ -6,12 +6,23 @@ import 'package:url_launcher/url_launcher.dart';
 import '../widgets/rounded_button.dart';
 
 class PersonalCardScreen extends StatelessWidget {
-  const PersonalCardScreen({super.key});
+  static const String id = '/personal_card_screen';
+
+  const PersonalCardScreen({
+    super.key,
+    required this.arguments,
+  });
+
+  final PersonalCardScreenArguments arguments;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.teal,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -42,10 +53,10 @@ class PersonalCardScreen extends StatelessWidget {
                 icon: Platform.isAndroid
                     ? Icons.phone_android
                     : Icons.phone_iphone,
-                text: '11 12345-6789',
+                text: arguments.phoneNumber,
                 onPressed: () {
                   final url = Uri.parse(
-                    'whatsapp://send?phone=11123456789',
+                    'whatsapp://send?phone=${arguments.phoneNumber}',
                   );
                   launchUrl(url);
                 },
@@ -55,11 +66,11 @@ class PersonalCardScreen extends StatelessWidget {
               const SizedBox(height: 16),
               RoundedButton(
                 icon: Icons.email,
-                text: 'teste@gmail.com',
+                text: arguments.emailAddress,
                 onPressed: () {
                   launchUrl(Uri(
                     scheme: 'mailto',
-                    path: 'teste@gmail.com',
+                    path: arguments.emailAddress,
                     query: 'subject=Aula Teste&body=Body Test',
                   ));
                 },
@@ -72,4 +83,14 @@ class PersonalCardScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class PersonalCardScreenArguments {
+  const PersonalCardScreenArguments({
+    required this.phoneNumber,
+    required this.emailAddress,
+  });
+
+  final String phoneNumber;
+  final String emailAddress;
 }

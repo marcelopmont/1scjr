@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/widgets/rounded_button.dart';
 
 class MenuScreen extends StatelessWidget {
+  static const String id = '/menu_screen';
+
   const MenuScreen({super.key});
 
   @override
@@ -22,7 +25,16 @@ class MenuScreen extends StatelessWidget {
               const SizedBox(height: 32),
               RoundedButton(
                 text: 'Cartão Pessoal',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    PersonalCardScreen.id,
+                    arguments: const PersonalCardScreenArguments(
+                      phoneNumber: '11 12345-6789',
+                      emailAddress: 'teste@testinho.com',
+                    ),
+                  );
+                },
               ),
             ],
           ),
