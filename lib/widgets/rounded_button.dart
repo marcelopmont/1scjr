@@ -3,31 +3,38 @@ import 'package:flutter/material.dart';
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
     super.key,
-    required this.icon,
     required this.text,
     required this.onPressed,
+    this.icon,
+    this.textColor = Colors.white,
+    this.backgroundColor = Colors.teal,
   });
 
-  final IconData icon;
+  final IconData? icon;
   final String text;
   final Function() onPressed;
+  final Color textColor;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: backgroundColor,
       borderRadius: BorderRadius.circular(16),
       elevation: 8,
       child: ListTile(
         onTap: onPressed,
-        leading: Icon(
-          icon,
-          color: Colors.teal,
-        ),
+        leading: icon != null
+            ? Icon(
+                icon,
+                color: Colors.teal,
+              )
+            : null,
         title: Text(
           text,
-          style: const TextStyle(
-            color: Colors.teal,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: textColor,
           ),
         ),
       ),
