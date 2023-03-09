@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/menu_screen.dart';
 import 'package:scjr1/screens/personal_card_screen.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
               as PersonalCardScreenArguments;
           return PersonalCardScreen(arguments: arguments);
         },
+        DiceScreen.id: (context) => const DiceScreen(),
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/widgets/rounded_button.dart';
 
@@ -33,6 +34,16 @@ class MenuScreen extends StatelessWidget {
                       phoneNumber: '11 12345-6789',
                       emailAddress: 'teste@testinho.com',
                     ),
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+              RoundedButton(
+                text: 'Dado',
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    DiceScreen.id,
                   );
                 },
               ),
