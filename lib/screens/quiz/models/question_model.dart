@@ -1,5 +1,5 @@
 class QuestionModel {
-  QuestionModel({
+  const QuestionModel({
     required this.question,
     required this.options,
     required this.answerIndex,
