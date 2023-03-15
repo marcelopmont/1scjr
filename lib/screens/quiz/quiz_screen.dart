@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scjr1/screens/quiz/models/question_model.dart';
+import 'package:scjr1/screens/quiz/quiz_final_score_screen.dart';
 import 'package:scjr1/widgets/rounded_button.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -48,9 +49,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   return RoundedButton(
                     text: currentQuestion.options[index],
                     onPressed: () {
-                      setState(() {
-                        questionIndex++;
-                      });
+                      _onOptionPressed(index);
                     },
                   );
                 },
@@ -99,5 +98,31 @@ class _QuizScreenState extends State<QuizScreen> {
           options: ['Estados Unidos', 'Brasil', 'Coréia do Sul'],
           answerIndex: 1),
     ];
+  }
+
+  void _onOptionPressed(int optionIndex) {
+    final currentQuestion = questions[questionIndex];
+
+    if (currentQuestion.answerIndex == optionIndex) {
+      score++;
+    }
+
+    _goToNextQuestion();
+  }
+
+  void _goToNextQuestion() {
+    if (questionIndex == questions.length - 1) {
+      Navigator.pushReplacementNamed(
+        context,
+        QuizFinalScoreScreen.id,
+        arguments: QuizFinalScoreScreenArguments(
+          score: score,
+        ),
+      );
+    } else {
+      setState(() {
+        questionIndex++;
+      });
+    }
   }
 }

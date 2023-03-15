@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/menu_screen.dart';
 import 'package:scjr1/screens/personal_card_screen.dart';
+import 'package:scjr1/screens/quiz/quiz_final_score_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_screen.dart';
 
 void main() {
@@ -28,6 +29,11 @@ class MyApp extends StatelessWidget {
         },
         DiceScreen.id: (context) => const DiceScreen(),
         QuizScreen.id: (context) => const QuizScreen(),
+        QuizFinalScoreScreen.id: (context) {
+          final arguments = ModalRoute.of(context)?.settings.arguments
+              as QuizFinalScoreScreenArguments;
+          return QuizFinalScoreScreen(arguments: arguments);
+        }
       },
     );
   }
