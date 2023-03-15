@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/personal_card_screen.dart';
+import 'package:scjr1/screens/quiz/quiz_screen.dart';
 import 'package:scjr1/widgets/rounded_button.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -44,6 +45,16 @@ class MenuScreen extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     DiceScreen.id,
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+              RoundedButton(
+                text: 'Quiz',
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    QuizScreen.id,
                   );
                 },
               ),
