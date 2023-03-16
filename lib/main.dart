@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/menu_screen.dart';
+import 'package:scjr1/screens/movies/movies_screen.dart';
 import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_final_score_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_screen.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
       initialRoute: MenuScreen.id,
       routes: {
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
           final arguments = ModalRoute.of(context)?.settings.arguments
               as QuizFinalScoreScreenArguments;
           return QuizFinalScoreScreen(arguments: arguments);
-        }
+        },
+        MoviesScreen.id: (context) => const MoviesScreen(),
       },
     );
   }

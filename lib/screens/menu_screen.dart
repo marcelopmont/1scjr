@@ -4,6 +4,8 @@ import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_screen.dart';
 import 'package:scjr1/widgets/rounded_button.dart';
 
+import 'movies/movies_screen.dart';
+
 class MenuScreen extends StatelessWidget {
   static const String id = '/menu_screen';
 
@@ -55,6 +57,16 @@ class MenuScreen extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     QuizScreen.id,
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+              RoundedButton(
+                text: 'Filmes',
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    MoviesScreen.id,
                   );
                 },
               ),
