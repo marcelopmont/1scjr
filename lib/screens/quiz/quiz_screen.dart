@@ -15,7 +15,7 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   var questions = <QuestionModel>[];
   var questionIndex = 0;
-  var score = 0;
+  var score = [];
 
   @override
   void initState() {
@@ -26,6 +26,16 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     final currentQuestion = questions[questionIndex];
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: BackButton(
+          onPressed: _onBackPressed,
+        ),
+        iconTheme: IconThemeData(
+          color: Theme.of(context).primaryColor,
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -54,6 +64,8 @@ class _QuizScreenState extends State<QuizScreen> {
                   );
                 },
               ),
+              const SizedBox(height: 16),
+              Text('score: ${score.length}'),
             ],
           ),
         ),
@@ -100,11 +112,21 @@ class _QuizScreenState extends State<QuizScreen> {
     ];
   }
 
+  void _onBackPressed() {
+    if (questionIndex == 0) {
+      Navigator.pop(context);
+    } else {
+      questionIndex--;
+      score.remove(questionIndex);
+      setState(() {});
+    }
+  }
+
   void _onOptionPressed(int optionIndex) {
     final currentQuestion = questions[questionIndex];
 
     if (currentQuestion.answerIndex == optionIndex) {
-      score++;
+      score.add(questionIndex);
     }
 
     _goToNextQuestion();
@@ -116,7 +138,7 @@ class _QuizScreenState extends State<QuizScreen> {
         context,
         QuizFinalScoreScreen.id,
         arguments: QuizFinalScoreScreenArguments(
-          score: score,
+          score: score.length,
         ),
       );
     } else {
