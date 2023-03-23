@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:scjr1/screens/auth_screen.dart';
 import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/menu_screen.dart';
 import 'package:scjr1/screens/movies/movies_screen.dart';
@@ -6,7 +8,9 @@ import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_final_score_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -20,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      initialRoute: MenuScreen.id,
+      initialRoute: AuthScreen.id,
       routes: {
         MenuScreen.id: (context) => const MenuScreen(),
         PersonalCardScreen.id: (context) {
@@ -36,6 +40,7 @@ class MyApp extends StatelessWidget {
           return QuizFinalScoreScreen(arguments: arguments);
         },
         MoviesScreen.id: (context) => const MoviesScreen(),
+        AuthScreen.id: (context) => AuthScreen(),
       },
     );
   }
