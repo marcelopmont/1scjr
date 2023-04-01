@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scjr1/screens/counter/ui/screens/counter_screen.dart';
 import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_screen.dart';
@@ -67,6 +68,16 @@ class MenuScreen extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     MoviesScreen.id,
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+              RoundedButton(
+                text: 'Contador',
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    CounterScreen.id,
                   );
                 },
               ),

@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:scjr1/screens/auth_screen.dart';
+import 'package:scjr1/screens/counter/bloc/counter_cubit.dart';
+import 'package:scjr1/screens/counter/ui/screens/counter_screen.dart';
 import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/menu_screen.dart';
 import 'package:scjr1/screens/movies/ui/movies_container.dart';
@@ -9,6 +11,7 @@ import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_final_score_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_screen.dart';
 
+import 'screens/counter/ui/container/counter_container.dart';
 import 'screens/movies/bloc/movies_cubit.dart';
 
 void main() async {
@@ -46,6 +49,9 @@ class MyApp extends StatelessWidget {
               child: MoviesContainer(),
             ),
         AuthScreen.id: (context) => AuthScreen(),
+        CounterScreen.id: (context) => CounterCubitProvider(
+          child: CounterContainer(),
+        )
       },
     );
   }
