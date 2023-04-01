@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:scjr1/screens/auth_screen.dart';
 import 'package:scjr1/screens/dice_screen.dart';
 import 'package:scjr1/screens/menu_screen.dart';
-import 'package:scjr1/screens/movies/movies_screen.dart';
+import 'package:scjr1/screens/movies/ui/movies_container.dart';
+import 'package:scjr1/screens/movies/ui/movies_screen.dart';
 import 'package:scjr1/screens/personal_card_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_final_score_screen.dart';
 import 'package:scjr1/screens/quiz/quiz_screen.dart';
+
+import 'screens/movies/bloc/movies_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      initialRoute: AuthScreen.id,
+      initialRoute: MenuScreen.id,
       routes: {
         MenuScreen.id: (context) => const MenuScreen(),
         PersonalCardScreen.id: (context) {
@@ -39,7 +42,9 @@ class MyApp extends StatelessWidget {
               as QuizFinalScoreScreenArguments;
           return QuizFinalScoreScreen(arguments: arguments);
         },
-        MoviesScreen.id: (context) => const MoviesScreen(),
+        MoviesScreen.id: (context) => MoviesCubitProvider(
+              child: MoviesContainer(),
+            ),
         AuthScreen.id: (context) => AuthScreen(),
       },
     );

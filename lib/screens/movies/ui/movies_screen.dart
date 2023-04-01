@@ -1,26 +1,16 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:scjr1/screens/movies/models/movie_model.dart';
 
-class MoviesScreen extends StatefulWidget {
+import '../domain/entities/movie_entity.dart';
+
+class MoviesScreen extends StatelessWidget {
   static const String id = '/movies_screen';
 
-  const MoviesScreen({super.key});
+  const MoviesScreen({
+    super.key,
+    required this.moviesList,
+  });
 
-  @override
-  State<MoviesScreen> createState() => _MoviesScreenState();
-}
-
-class _MoviesScreenState extends State<MoviesScreen> {
-  var moviesList = <MovieModel>[];
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchMovies();
-  }
+  final List<MovieEntity> moviesList;
 
   @override
   Widget build(BuildContext context) {
@@ -86,20 +76,5 @@ class _MoviesScreenState extends State<MoviesScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> _fetchMovies() async {
-    try {
-      final uri = Uri.parse('https://demo7206081.mockable.io/movies');
-      final response = await Client().get(uri);
-      final responseJson = jsonDecode(response.body);
-
-      moviesList = responseJson['results']
-          .map<MovieModel>((map) => MovieModel.fromMap(map))
-          .toList();
-      setState(() {});
-    } catch (e) {
-      print(e);
-    }
   }
 }

@@ -1,3 +1,5 @@
+import 'package:scjr1/screens/movies/domain/entities/movie_entity.dart';
+
 class MovieModel {
   const MovieModel({
     required this.title,
@@ -13,5 +15,11 @@ class MovieModel {
         title: map['original_title'],
         description: map['overview'],
         image: map['poster_path'],
+      );
+
+  MovieEntity toEntity() => MovieEntity(
+        title: title,
+        description: description,
+        image: image,
       );
 }
